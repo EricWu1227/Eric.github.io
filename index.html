@@ -433,7 +433,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/31/mysql在存在主键唯一索引的情况下怎么增加唯一联合索引/" itemprop="url">mysql在存在主键唯一索引的情况下怎么增加唯一联合索引</a></h1>
+                <a class="post-title-link" href="/2017/05/31/mysql在存在主键唯一索引的情况下怎么增加唯一联合索引/" itemprop="url">mysql如何增加唯一联合索引</a></h1>
         
 
         <div class="post-meta">
@@ -493,7 +493,7 @@
       
         
           
-            <p>我们需要为以前的表 创建这个索引,有可能以前的数据中存在重复的记录 那怎么办呢?<br>alter ignore table quality_issue_info add unique index biz_id(issue_channel,invoke_id);<br>它会删除重复的记录（别怕，会保留一条），然后建立唯一索引，高效而且人性化.</p>
+            <p>PRIMARY KEY（主键索引）<br>ALTER TABLE <code>table_name</code> ADD PRIMARY KEY (<code>column_name</code>)<br>UNIQUE(唯一索引)<br>ALTER TABLE <code>table_name</code> ADD UNIQUE (<code>column_name</code>)<br>INDEX(普通索引)<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column_name</code>)<br>多列索引,列值的组合必须唯一<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column1_name</code>,<code>column2_name</code>,<code>column3_name</code>)<br>查看索引<br>SHOW INDEX FROM <code>table_name</code><br>我们需要为以前的表 创建这个索引,有可能以前的数据中存在重复的记录 那怎么办呢?<br>alter ignore table quality_issue_info add unique index biz_id(issue_channel,invoke_id);<br>它会删除重复的记录（别怕，会保留一条），然后建立唯一索引，高效而且人性化.</p>
 
           
         
