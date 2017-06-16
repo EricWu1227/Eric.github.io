@@ -6,8 +6,8 @@
     <content type="text"><![CDATA[groovy提供了?. 安全导航操作符来简化对空指针的处理,避免抛出空指针异常,以达到减少噪音,节省开发者精力的目的 示例代码def foo(str){ //if (str != null) {str.reverse()} str?.reverse()}println foo(‘evil’)println foo(null) 输出结果:live null]]></content>
   </entry>
   <entry>
-    <title><![CDATA[groovy学习笔记]]></title>
-    <url>%2F2017%2F06%2F13%2Fgroovy%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <title><![CDATA[groovy循环]]></title>
+    <url>%2F2017%2F06%2F13%2Fgroovy%E5%BE%AA%E7%8E%AF%2F</url>
     <content type="text"><![CDATA[groovy提供以下三种循环方法class WaysToLoop { void hello(){ 0.upto(2){println”$it”} println(“================”) 3.times { println(“$it”)} println(“================”) 0.step(10,2){ println(“$it”)} 3.times {print(‘ho’)} println ‘hello’ }}其中$it代表循环时的索引值]]></content>
   </entry>
   <entry>
