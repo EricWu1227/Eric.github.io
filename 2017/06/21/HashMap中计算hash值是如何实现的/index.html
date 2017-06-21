@@ -96,16 +96,16 @@
 
 
 
-<meta name="description" content="PRIMARY KEY（主键索引）ALTER TABLE table_name ADD PRIMARY KEY (column_name)UNIQUE(唯一索引)ALTER TABLE table_name ADD UNIQUE (column_name)INDEX(普通索引)ALTER TABLE table_name ADD INDEX index_name (column_name)多列索引">
+<meta name="description" content="/**  * Retrieve object hash code and applies a supplemental hash function to the  * result hash, which defends against poor quality hash functions.  This is  * critical because HashMap uses power-of-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql创建索引相关">
-<meta property="og:url" content="http://yoursite.com/2017/05/31/mysql创建索引相关/index.html">
+<meta property="og:title" content="HashMap中计算hash值是如何实现的">
+<meta property="og:url" content="http://yoursite.com/2017/06/21/HashMap中计算hash值是如何实现的/index.html">
 <meta property="og:site_name" content="Eric&#39;s blog">
-<meta property="og:description" content="PRIMARY KEY（主键索引）ALTER TABLE table_name ADD PRIMARY KEY (column_name)UNIQUE(唯一索引)ALTER TABLE table_name ADD UNIQUE (column_name)INDEX(普通索引)ALTER TABLE table_name ADD INDEX index_name (column_name)多列索引">
-<meta property="og:updated_time" content="2017-06-13T08:10:06.000Z">
+<meta property="og:description" content="/**  * Retrieve object hash code and applies a supplemental hash function to the  * result hash, which defends against poor quality hash functions.  This is  * critical because HashMap uses power-of-">
+<meta property="og:updated_time" content="2017-06-21T15:41:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql创建索引相关">
-<meta name="twitter:description" content="PRIMARY KEY（主键索引）ALTER TABLE table_name ADD PRIMARY KEY (column_name)UNIQUE(唯一索引)ALTER TABLE table_name ADD UNIQUE (column_name)INDEX(普通索引)ALTER TABLE table_name ADD INDEX index_name (column_name)多列索引">
+<meta name="twitter:title" content="HashMap中计算hash值是如何实现的">
+<meta name="twitter:description" content="/**  * Retrieve object hash code and applies a supplemental hash function to the  * result hash, which defends against poor quality hash functions.  This is  * critical because HashMap uses power-of-">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/31/mysql创建索引相关/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/21/HashMap中计算hash值是如何实现的/"/>
 
 
 
 
 
-  <title>mysql创建索引相关 | Eric's blog</title>
+  <title>HashMap中计算hash值是如何实现的 | Eric's blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/31/mysql创建索引相关/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/21/HashMap中计算hash值是如何实现的/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eric">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mysql创建索引相关</h1>
+          <h1 class="post-title" itemprop="name headline">HashMap中计算hash值是如何实现的</h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T15:34:41+08:00">
-                2017-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T23:26:56+08:00">
+                2017-06-21
               </time>
             
 
@@ -341,9 +341,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/31/mysql创建索引相关/#comments" itemprop="discussionUrl">
+                <a href="/2017/06/21/HashMap中计算hash值是如何实现的/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/31/mysql创建索引相关/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/06/21/HashMap中计算hash值是如何实现的/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,8 +368,28 @@
       
 
       
-        <p>PRIMARY KEY（主键索引）<br>ALTER TABLE <code>table_name</code> ADD PRIMARY KEY (<code>column_name</code>)<br>UNIQUE(唯一索引)<br>ALTER TABLE <code>table_name</code> ADD UNIQUE (<code>column_name</code>)<br>INDEX(普通索引)<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column_name</code>)<br>多列索引,列值的组合必须唯一<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column1_name</code>,<code>column2_name</code>,<code>column3_name</code>)<br>查看索引<br>SHOW INDEX FROM <code>table_name</code><br>我们需要为以前的表 创建这个索引,有可能以前的数据中存在重复的记录 那怎么办呢?<br>alter ignore table table_name add unique index index_name(column1_name,column2_name);<br>它会删除重复的记录（别怕，会保留一条），然后建立唯一索引，高效而且人性化.</p>
+        <p> /**</p>
+<pre><code> * Retrieve object hash code and applies a supplemental hash function to the
+ * result hash, which defends against poor quality hash functions.  This is
+ * critical because HashMap uses power-of-two length hash tables, that
+ * otherwise encounter collisions for hashCodes that do not differ
+ * in lower bits. Note: Null keys always map to hash 0, thus index 0.
+ */
+final int hash(Object k) {
+    int h = hashSeed;
+    if (0 != h &amp;&amp; k instanceof String) {
+        return sun.misc.Hashing.stringHash32((String) k);
+    }
 
+    h ^= k.hashCode();
+
+    // This function ensures that hashCodes that differ only by
+    // constant multiples at each bit position have a bounded
+    // number of collisions (approximately 8 at default load factor).
+    h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);
+    return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);
+}
+</code></pre>
       
     </div>
 
@@ -405,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/27/hello-world/" rel="next" title="hello world">
-                <i class="fa fa-chevron-left"></i> hello world
+              <a href="/2017/06/16/groovy安全导航符/" rel="next" title="groovy安全导航符">
+                <i class="fa fa-chevron-left"></i> groovy安全导航符
               </a>
             
           </div>
@@ -414,10 +434,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/12/外观设计模式/" rel="prev" title="外观设计模式">
-                外观设计模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -687,9 +703,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/05/31/mysql创建索引相关/';
-          this.page.identifier = '2017/05/31/mysql创建索引相关/';
-          this.page.title = 'mysql创建索引相关';
+          this.page.url = 'http://yoursite.com/2017/06/21/HashMap中计算hash值是如何实现的/';
+          this.page.identifier = '2017/06/21/HashMap中计算hash值是如何实现的/';
+          this.page.title = 'HashMap中计算hash值是如何实现的';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

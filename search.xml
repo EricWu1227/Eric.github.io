@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HashMap中计算hash值是如何实现的]]></title>
+    <url>%2F2017%2F06%2F21%2FHashMap%E4%B8%AD%E8%AE%A1%E7%AE%97hash%E5%80%BC%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%2F</url>
+    <content type="text"><![CDATA[/** * Retrieve object hash code and applies a supplemental hash function to the * result hash, which defends against poor quality hash functions. This is * critical because HashMap uses power-of-two length hash tables, that * otherwise encounter collisions for hashCodes that do not differ * in lower bits. Note: Null keys always map to hash 0, thus index 0. */ final int hash(Object k) { int h = hashSeed; if (0 != h &amp;&amp; k instanceof String) { return sun.misc.Hashing.stringHash32((String) k); } h ^= k.hashCode(); // This function ensures that hashCodes that differ only by // constant multiples at each bit position have a bounded // number of collisions (approximately 8 at default load factor). h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12); return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4); }]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[groovy安全导航符]]></title>
     <url>%2F2017%2F06%2F16%2Fgroovy%E5%AE%89%E5%85%A8%E5%AF%BC%E8%88%AA%E7%AC%A6%2F</url>
     <content type="text"><![CDATA[groovy提供了?. 安全导航操作符来简化对空指针的处理,避免抛出空指针异常,以达到减少噪音,节省开发者精力的目的 示例代码def foo(str){ //if (str != null) {str.reverse()} str?.reverse()}println foo(‘evil’)println foo(null) 输出结果:live null]]></content>
