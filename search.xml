@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于字符串内存管理策略的问题]]></title>
+    <url>%2F2017%2F07%2F04%2F%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[转自知乎大V姚冬 几十年前 在C和Pascal的时代，就有字符串存储形式 是 \0 结尾还是 长度+内容的争论，这个问题严重影响了API的设计，内存的管理，甚至程序架构。字符串是一种非常常用的 生命周期通常很短的对象，而且它的size是不固定的，长度为 1 或 1GB都有可能，导致内存管理非常麻烦复杂。用长度+内容表示，每个串都要额外付出4个字节，用\0结尾吧，算长度就很麻烦，万一结尾忘了\0就要崩溃，选哪个好字符串的长度放哪里，放到起始指针的位置，还是起始指针的前面如果放前面，那么字符串起始指针和内存块起始不一致怎么解决字符串拼接的时候把源串复制到目标串结尾，那么目标串剩余内存不够怎么办，重新分配要多一次赋值，频繁拼接性能有问题怎么办函数返回值如果是字符串，那么这个串是调用者分配内存还是被调用者分配，谁来负责释放。如果调用者分配，那么调用者怎么知道字符串将有多长。频繁分配释放大小各异的字符串，会不会导致内存碎片化对于小字符串是分配在堆上还是栈上怎么把常量串和变量串分别处理如果设计面向对象的字符串，字符串加法怎么定义，是在原来对象上加，还是生成一个新对象如果每加一次都生成新对象会不会导致构造析构太频繁如果是托管语言会不会太频繁GC要不要设计单独的辅助类来解决字符串拼接问题那这个辅助类怎么设计，要不要考虑线程安全如果考虑线程安全的话，怎么兼顾性能]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[groovy中的javaBean]]></title>
     <url>%2F2017%2F07%2F03%2Fgroovy%E4%B8%AD%E7%9A%84javaBean%2F</url>
     <content type="text"><![CDATA[class Car { def miles = 0 final year Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “Miles: $car.miles” 当代码中调用miles时,其实并非引用一个字段,而是调用该属性的访问器.要把属性设置为只读的,需要使用final来声明该属性.在这种情况下,groovy会为该属性提供一个访问器,但不提供更改器.groovy的实现不区分public,private和protected.如果想把变量设置为私有的,需要实现一个拒绝任何修改的更改器.示例代码如下 class Car2 { final year private miles = 0 Car2(theYear) { year = theYear } def getMiles() { println &quot;getMiles called&quot; miles } private void setMiles(miles) { throw new IllegalAccessException(&quot;you are not allowed to change miles&quot;) } def drive() { if (dist&gt;0) miles += dist} }]]></content>
