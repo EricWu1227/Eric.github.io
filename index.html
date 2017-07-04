@@ -509,8 +509,12 @@ private void setMiles(miles) {
     throw new IllegalAccessException(&quot;you are not allowed to change miles&quot;)
 }
 
-def drive() { if (dist&gt;0) miles += dist}
+def drive(dist) { if (dist&gt;0) miles += dist}
 </code></pre><p>}</p>
+<p>def car = new Car2(2012)</p>
+<p>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Driving’<br>car.drive(10)<br>println “Can I set the year”<br>println “Miles: $car.miles”</p>
+<p>try {<br>    println “Can I set the year?”<br>    car.year = 1900<br>} catch (groovy.lang.ReadOnlyPropertyException ex){<br>    println ex.message<br>}</p>
+<p>try{<br>    println “Can I set the miles?”<br>    car.miles = 12<br>} catch (IllegalAccessException ex){<br>    println(ex.message)<br>}</p>
 
           
         
