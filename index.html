@@ -369,16 +369,14 @@
 
       
         
-          
-            <p>复习一下…最近在怀疑自己是不是计算机专业毕业的…<br>首先是运算口诀!口诀很重要!<br>相同取0，相异取1</p>
-<p>注意,所有参与运算的都是以补码形式进行的 结果也是补码 因此也需要将补码转换成为原码的形式存在<br>正数反码：与原码相同<br>负数反码：符号位为“1”，数值位按位 取反。<br>正数补码：与原码相同<br>负数补码：求反加一</p>
-<p>比如1^2<br>即<br>001<br>^<br>010<br>结果为 011 = 3<br>注意0为符号位正数符号位为0负数符号位为1</p>
-<p>那,如果是正数和负数做按位异或运算呢?如何计算?<br>(-2 ^ 3)  = ？</p>
-<p>如果是负数的情况，那么将需要进行转换<br>负数的补码：符号位为1，其余位为该数绝对值的原码按位取反；然后再加1。<br>如：－2<br>源码：1000 0000 0000 0010 （负数，最高为是1）<br>反码：1111 1111 1111 1101 （按位取反）<br>补码：1111 1111 1111 1110 （加一）<br>如果是正数，那么原码和补码一样<br>3的补码：<br>0000 0000 0000 0011<br>所以-2^3 =<br>  1111 1111 1111 1110<br>^ 0000 0000 0000 0011<br>= 1111 1111 1111 1101</p>
-<p>因为结果也是补码，所以必须要转换成为原码<br>分为两种情况：<br>1.如果最高为为1 即为负数 那么最高位不变 其他按位取反，<br>最后加一 和前边补码转原码是一样的<br>2.最高为是0,不用转化</p>
-<p>嗯,结果为-3</p>
-
-          
+          <p>复习一下…最近在怀疑自己是不是计算机专业毕业的…<br>首先是运算口诀!口诀很重要!<br>相同取0，相异取1<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/26/按位异或运算/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -621,11 +619,15 @@
 
       
         
-          
-            <p>转自知乎大V姚冬</p>
-<p>几十年前 在C和Pascal的时代，就有字符串存储形式 是 \0 结尾还是 长度+内容的争论，这个问题严重影响了API的设计，内存的管理，甚至程序架构。字符串是一种非常常用的 生命周期通常很短的对象，而且它的size是不固定的，长度为 1 或 1GB都有可能，导致内存管理非常麻烦复杂。用长度+内容表示，每个串都要额外付出4个字节，用\0结尾吧，算长度就很麻烦，万一结尾忘了\0就要崩溃，选哪个好字符串的长度放哪里，放到起始指针的位置，还是起始指针的前面如果放前面，那么字符串起始指针和内存块起始不一致怎么解决字符串拼接的时候把源串复制到目标串结尾，那么目标串剩余内存不够怎么办，重新分配要多一次赋值，频繁拼接性能有问题怎么办函数返回值如果是字符串，那么这个串是调用者分配内存还是被调用者分配，谁来负责释放。如果调用者分配，那么调用者怎么知道字符串将有多长。频繁分配释放大小各异的字符串，会不会导致内存碎片化对于小字符串是分配在堆上还是栈上怎么把常量串和变量串分别处理如果设计面向对象的字符串，字符串加法怎么定义，是在原来对象上加，还是生成一个新对象如果每加一次都生成新对象会不会导致构造析构太频繁如果是托管语言会不会太频繁GC要不要设计单独的辅助类来解决字符串拼接问题那这个辅助类怎么设计，要不要考虑线程安全如果考虑线程安全的话，怎么兼顾性能</p>
-
-          
+          <p>转自知乎大V姚冬</p>
+<p>几十年前 在C和Pascal的时代，就有字符串存储形式 是 \0 结尾还是 长度+内容的争论，这个问题严重影响了API的设计，内存的管理，甚至程序架构。字符串是一种非常常用的 生命周期通常很短的对象，<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/04/关于字符串内存管理策略的问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -745,30 +747,15 @@
 
       
         
-          
-            <p>class Car {<br>    def miles = 0<br>    final year<br>    Car(theYear) { year = theYear }</p>
-<p>}<br>Car car = new Car(2008)<br>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Setting miles’<br>car.miles = 25<br>println “Miles: $car.miles”</p>
-<p>当代码中调用miles时,其实并非引用一个字段,而是调用该属性的访问器.要把属性设置为只读的,需要使用final来声明该属性.在这种情况下,groovy会为该属性提供一个访问器,但不提供更改器.<br>groovy的实现不区分public,private和protected.<br>如果想把变量设置为私有的,需要实现一个拒绝任何修改的更改器.示例代码如下</p>
-<p>class Car2 {<br>    final year<br>    private miles = 0</p>
-<pre><code>Car2(theYear) { year = theYear }
-
-def getMiles() {
-    println &quot;getMiles called&quot;
-    miles
-}
-
-private void setMiles(miles) {
-    throw new IllegalAccessException(&quot;you are not allowed to change miles&quot;)
-}
-
-def drive(dist) { if (dist&gt;0) miles += dist}
-</code></pre><p>}</p>
-<p>def car = new Car2(2012)</p>
-<p>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Driving’<br>car.drive(10)<br>println “Can I set the year”<br>println “Miles: $car.miles”</p>
-<p>try {<br>    println “Can I set the year?”<br>    car.year = 1900<br>} catch (groovy.lang.ReadOnlyPropertyException ex){<br>    println ex.message<br>}</p>
-<p>try{<br>    println “Can I set the miles?”<br>    car.miles = 12<br>} catch (IllegalAccessException ex){<br>    println(ex.message)<br>}</p>
-
-          
+          <p>class Car {<br>    def miles = 0<br>    final year<br>    Car(theYear) { year = theYear }</p>
+<p>}<br>Car car = new Car(2008)<br>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Setting miles’<br>car.miles = 25<br>println “Miles: $car.miles”<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/03/groovy中的javaBean/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -888,31 +875,14 @@ def drive(dist) { if (dist&gt;0) miles += dist}
 
       
         
-          
-            <p>以下摘自jdk1.7</p>
-<pre><code>/**
- * Retrieve object hash code and applies a supplemental hash function to the
- * result hash, which defends against poor quality hash functions.  This is
- * critical because HashMap uses power-of-two length hash tables, that
- * otherwise encounter collisions for hashCodes that do not differ
- * in lower bits. Note: Null keys always map to hash 0, thus index 0.
- */
-final int hash(Object k) {
-    int h = hashSeed;
-    if (0 != h &amp;&amp; k instanceof String) {
-        return sun.misc.Hashing.stringHash32((String) k);
-    }
-
-    h ^= k.hashCode();
-
-    // This function ensures that hashCodes that differ only by
-    // constant multiples at each bit position have a bounded
-    // number of collisions (approximately 8 at default load factor).
-    h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);
-    return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);
-}
-</code></pre>
-          
+          <p>以下摘自jdk1.7<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/21/HashMap中计算hash值是如何实现的/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1032,12 +1002,14 @@ final int hash(Object k) {
 
       
         
-          
-            <p>groovy提供了?. 安全导航操作符来简化对空指针的处理,避免抛出空指针异常,以达到减少噪音,节省开发者精力的目的</p>
-<p>示例代码<br>def foo(str){<br>    //if (str != null) {str.reverse()}<br>    str?.reverse()<br>}<br>println foo(‘evil’)<br>println foo(null)</p>
-<p>输出结果:live<br>        null</p>
-
-          
+          <p>groovy提供了?. 安全导航操作符来简化对空指针的处理,避免抛出空指针异常,以达到减少噪音,节省开发者精力的目的<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/16/groovy安全导航符/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1157,10 +1129,14 @@ final int hash(Object k) {
 
       
         
-          
-            <p>groovy提供以下三种循环方法<br>class WaysToLoop {<br>    void hello(){<br>        0.upto(2){println”$it”}<br>        println(“================”)<br>        3.times { println(“$it”)}<br>        println(“================”)<br>        0.step(10,2){ println(“$it”)}<br>        3.times {print(‘ho’)}<br>        println ‘hello’<br>    }<br>}<br>其中$it代表循环时的索引值</p>
-
-          
+          <p>groovy提供以下三种循环方法<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/13/groovy循环/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1280,10 +1256,14 @@ final int hash(Object k) {
 
       
         
-          
-            <p>由于目前多个项目中大量使用外观设计模式,故对此设计模式做一总结<br>外观模式（Facade），为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fgigbziaqkj30qk0cdglk.jpg" alt=""><br>外观模式包含如下两个角色：<br>(1) Facade（外观角色）：在客户端可以调用它的方法，在外观角色中可以知道相关的（一个或者多个）子系统的功能和责任；在正常情况下，它将所有从客户端发来的请求委派到相应的子系统去，传递给相应的子系统对象处理。<br>(2) SubSystem（子系统角色）：在软件系统中可以有一个或者多个子系统角色，每一个子系统可以不是一个单独的类，而是一个类的集合，它实现子系统的功能；每一个子系统都可以被客户端直接调用，或者被外观角色调用，它处理由外观类传过来的请求；子系统并不知道外观的存在，对于子系统而言，外观角色仅仅是另外一个客户端而已。<br>外观模式的主要目的在于降低系统的复杂程度，在面向对象软件系统中，类与类之间的关系越多，不能表示系统设计得越好，反而表示系统中类之间的耦合度太大，这样的系统在维护和修改时都缺乏灵活性，因为一个类的改动会导致多个类发生变化，而外观模式的引入在很大程度上降低了类与类之间的耦合关系。引入外观模式之后，增加新的子系统或者移除子系统都非常方便，客户类无须进行修改（或者极少的修改），只需要在外观类中增加或移除对子系统的引用即可。从这一点来说，外观模式在一定程度上并不符合开闭原则，增加新的子系统需要对原有系统进行一定的修改，虽然这个修改工作量不大。</p>
-
-          
+          <p>由于目前多个项目中大量使用外观设计模式,故对此设计模式做一总结<br>外观模式（Facade），为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/12/外观设计模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1403,10 +1383,14 @@ final int hash(Object k) {
 
       
         
-          
-            <p>PRIMARY KEY（主键索引）<br>ALTER TABLE <code>table_name</code> ADD PRIMARY KEY (<code>column_name</code>)<br>UNIQUE(唯一索引)<br>ALTER TABLE <code>table_name</code> ADD UNIQUE (<code>column_name</code>)<br>INDEX(普通索引)<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column_name</code>)<br>多列索引,列值的组合必须唯一<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column1_name</code>,<code>column2_name</code>,<code>column3_name</code>)<br>查看索引<br>SHOW INDEX FROM <code>table_name</code><br>我们需要为以前的表 创建这个索引,有可能以前的数据中存在重复的记录 那怎么办呢?<br>alter ignore table table_name add unique index index_name(column1_name,column2_name);<br>它会删除重复的记录（别怕，会保留一条），然后建立唯一索引，高效而且人性化.</p>
-
-          
+          <p>PRIMARY KEY（主键索引）<br>ALTER TABLE <code>table_name</code> ADD PRIMARY KEY (<code>column_name</code>)<br>UNIQUE(唯一索引)<br>ALTER TABLE <code>table_name</code> ADD UNIQUE (<code>column_name</code>)<br>INDEX(普通索引)<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column_name</code>)<br>多列索引,列值的组合必须唯一<br>ALTER TABLE <code>table_name</code> ADD INDEX index_name (<code>column1_name</code>,<code>column2_name</code>,<code>column3_name</code>)<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/31/mysql创建索引相关/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

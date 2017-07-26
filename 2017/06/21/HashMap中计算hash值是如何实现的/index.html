@@ -96,16 +96,16 @@
 
 
 
-<meta name="description" content="以下摘自jdk1.7 /**  * Retrieve object hash code and applies a supplemental hash function to the  * result hash, which defends against poor quality hash functions.  This is  * critical because HashMap uses">
+<meta name="description" content="以下摘自jdk1.7">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HashMap中计算hash值是如何实现的">
 <meta property="og:url" content="http://yoursite.com/2017/06/21/HashMap中计算hash值是如何实现的/index.html">
 <meta property="og:site_name" content="Eric&#39;s blog">
-<meta property="og:description" content="以下摘自jdk1.7 /**  * Retrieve object hash code and applies a supplemental hash function to the  * result hash, which defends against poor quality hash functions.  This is  * critical because HashMap uses">
-<meta property="og:updated_time" content="2017-06-22T02:46:37.000Z">
+<meta property="og:description" content="以下摘自jdk1.7">
+<meta property="og:updated_time" content="2017-07-26T11:45:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap中计算hash值是如何实现的">
-<meta name="twitter:description" content="以下摘自jdk1.7 /**  * Retrieve object hash code and applies a supplemental hash function to the  * result hash, which defends against poor quality hash functions.  This is  * critical because HashMap uses">
+<meta name="twitter:description" content="以下摘自jdk1.7">
 
 
 
@@ -368,9 +368,8 @@
       
 
       
-        <p>以下摘自jdk1.7</p>
-<pre><code>/**
- * Retrieve object hash code and applies a supplemental hash function to the
+        <p>以下摘自jdk1.7<br><a id="more"></a><br>    /**</p>
+<pre><code> * Retrieve object hash code and applies a supplemental hash function to the
  * result hash, which defends against poor quality hash functions.  This is
  * critical because HashMap uses power-of-two length hash tables, that
  * otherwise encounter collisions for hashCodes that do not differ
