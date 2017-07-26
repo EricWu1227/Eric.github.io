@@ -291,6 +291,135 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/按位异或运算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eric">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eric's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/26/按位异或运算/" itemprop="url">按位异或运算</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T16:25:32+08:00">
+                2017-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/26/按位异或运算/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/26/按位异或运算/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>复习一下…最近在怀疑自己是不是计算机专业毕业的…<br>首先是运算口诀!口诀很重要!<br>相同取0，相异取1</p>
+<p>注意,所有参与运算的都是以补码形式进行的 结果也是补码 因此也需要将补码转换成为原码的形式存在<br>正数反码：与原码相同<br>负数反码：符号位为“1”，数值位按位 取反。<br>正数补码：与原码相同<br>负数补码：求反加一</p>
+<p>比如1^2<br>即<br>001<br>^<br>010<br>结果为 011 = 3<br>注意0为符号位正数符号位为0负数符号位为1</p>
+<p>那,如果是正数和负数做按位异或运算呢?如何计算?<br>(-2 ^ 3)  = ？</p>
+<p>如果是负数的情况，那么将需要进行转换<br>负数的补码：符号位为1，其余位为该数绝对值的原码按位取反；然后再加1。<br>如：－2<br>源码：1000 0000 0000 0010 （负数，最高为是1）<br>反码：1111 1111 1111 1101 （按位取反）<br>补码：1111 1111 1111 1110 （加一）<br>如果是正数，那么原码和补码一样<br>3的补码：<br>0000 0000 0000 0011<br>所以-2^3 =<br>  1111 1111 1111 1110<br>^ 0000 0000 0000 0011<br>= 1111 1111 1111 1101</p>
+<p>因为结果也是补码，所以必须要转换成为原码<br>分为两种情况：<br>1.如果最高为为1 即为负数 那么最高位不变 其他按位取反，<br>最后加一 和前边补码转原码是一样的<br>2.最高为是0,不用转化</p>
+<p>嗯,结果为-3</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/04/关于字符串内存管理策略的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1355,7 +1484,7 @@ final int hash(Object k) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
