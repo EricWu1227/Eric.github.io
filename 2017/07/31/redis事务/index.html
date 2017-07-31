@@ -96,16 +96,16 @@
 
 
 
-<meta name="description" content="class Car {    def miles = 0    final year    Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “">
+<meta name="description" content="常用命令MULTIMark the start of a transaction blockMarks the start of a transaction block. Subsequent commands will be queued for atomic execution using EXEC.Return valueSimple string reply: always OK. EXE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="groovy中的javaBean">
-<meta property="og:url" content="http://yoursite.com/2017/07/03/groovy中的javaBean/index.html">
+<meta property="og:title" content="redis事务">
+<meta property="og:url" content="http://yoursite.com/2017/07/31/redis事务/index.html">
 <meta property="og:site_name" content="Eric&#39;s blog">
-<meta property="og:description" content="class Car {    def miles = 0    final year    Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “">
-<meta property="og:updated_time" content="2017-07-26T11:45:31.000Z">
+<meta property="og:description" content="常用命令MULTIMark the start of a transaction blockMarks the start of a transaction block. Subsequent commands will be queued for atomic execution using EXEC.Return valueSimple string reply: always OK. EXE">
+<meta property="og:updated_time" content="2017-07-31T03:20:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="groovy中的javaBean">
-<meta name="twitter:description" content="class Car {    def miles = 0    final year    Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “">
+<meta name="twitter:title" content="redis事务">
+<meta name="twitter:description" content="常用命令MULTIMark the start of a transaction blockMarks the start of a transaction block. Subsequent commands will be queued for atomic execution using EXEC.Return valueSimple string reply: always OK. EXE">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/03/groovy中的javaBean/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/31/redis事务/"/>
 
 
 
 
 
-  <title>groovy中的javaBean | Eric's blog</title>
+  <title>redis事务 | Eric's blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/groovy中的javaBean/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/31/redis事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eric">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">groovy中的javaBean</h1>
+          <h1 class="post-title" itemprop="name headline">redis事务</h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T18:37:25+08:00">
-                2017-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T11:11:59+08:00">
+                2017-07-31
               </time>
             
 
@@ -341,9 +341,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/03/groovy中的javaBean/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/31/redis事务/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/03/groovy中的javaBean/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/31/redis事务/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,27 +368,9 @@
       
 
       
-        <p>class Car {<br>    def miles = 0<br>    final year<br>    Car(theYear) { year = theYear }</p>
-<p>}<br>Car car = new Car(2008)<br>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Setting miles’<br>car.miles = 25<br>println “Miles: $car.miles”<br><a id="more"></a></p>
-<p>当代码中调用miles时,其实并非引用一个字段,而是调用该属性的访问器.要把属性设置为只读的,需要使用final来声明该属性.在这种情况下,groovy会为该属性提供一个访问器,但不提供更改器.<br>groovy的实现不区分public,private和protected.<br>如果想把变量设置为私有的,需要实现一个拒绝任何修改的更改器.示例代码如下</p>
-<p>class Car2 {<br>    final year<br>    private miles = 0</p>
-<pre><code>Car2(theYear) { year = theYear }
-
-def getMiles() {
-    println &quot;getMiles called&quot;
-    miles
-}
-
-private void setMiles(miles) {
-    throw new IllegalAccessException(&quot;you are not allowed to change miles&quot;)
-}
-
-def drive(dist) { if (dist&gt;0) miles += dist}
-</code></pre><p>}</p>
-<p>def car = new Car2(2012)</p>
-<p>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Driving’<br>car.drive(10)<br>println “Can I set the year”<br>println “Miles: $car.miles”</p>
-<p>try {<br>    println “Can I set the year?”<br>    car.year = 1900<br>} catch (groovy.lang.ReadOnlyPropertyException ex){<br>    println ex.message<br>}</p>
-<p>try{<br>    println “Can I set the miles?”<br>    car.miles = 12<br>} catch (IllegalAccessException ex){<br>    println(ex.message)<br>}</p>
+        <p>常用命令<br>MULTI<br>Mark the start of a transaction block<br>Marks the start of a transaction block. Subsequent commands will be queued for atomic execution using EXEC.<br>Return value<br>Simple string reply: always OK.</p>
+<p>EXEC<br>Execute all commands issued after MULTI<br>Executes all previously queued commands in a transaction and restores the connection state to normal.<br>When using WATCH, EXEC will execute commands only if the watched keys were not modified, allowing for a check-and-set mechanism.<br>Return value<br>Array reply: each element being the reply to each of the commands in the atomic transaction.<br>When using WATCH, EXEC can return a Null reply if the execution was aborted.</p>
+<p>redis的事务大致分为两个阶段,命令收集阶段和命令执行阶段<br>MULTI标记开始收集命令,EXEC标记开始执行命令<br>值得注意的是redis里的事务跟一般关系型数据库事务不同.redis事务原子性只保证全部命令都会执行,或都不执行.<br>当事务中命令执行失败后,事务并不会回滚</p>
 
       
     </div>
@@ -425,8 +407,8 @@ def drive(dist) { if (dist&gt;0) miles += dist}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/21/HashMap中计算hash值是如何实现的/" rel="next" title="HashMap中计算hash值是如何实现的">
-                <i class="fa fa-chevron-left"></i> HashMap中计算hash值是如何实现的
+              <a href="/2017/07/26/按位异或运算/" rel="next" title="按位异或运算">
+                <i class="fa fa-chevron-left"></i> 按位异或运算
               </a>
             
           </div>
@@ -434,10 +416,6 @@ def drive(dist) { if (dist&gt;0) miles += dist}
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/04/关于字符串内存管理策略的问题/" rel="prev" title="关于字符串内存管理策略的问题">
-                关于字符串内存管理策略的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -707,9 +685,9 @@ def drive(dist) { if (dist&gt;0) miles += dist}
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/07/03/groovy中的javaBean/';
-          this.page.identifier = '2017/07/03/groovy中的javaBean/';
-          this.page.title = 'groovy中的javaBean';
+          this.page.url = 'http://yoursite.com/2017/07/31/redis事务/';
+          this.page.identifier = '2017/07/31/redis事务/';
+          this.page.title = 'redis事务';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://eric-wu.disqus.com/embed.js';

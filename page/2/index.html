@@ -96,16 +96,12 @@
 
 
 
-<meta name="description" content="class Car {    def miles = 0    final year    Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “">
-<meta property="og:type" content="article">
-<meta property="og:title" content="groovy中的javaBean">
-<meta property="og:url" content="http://yoursite.com/2017/07/03/groovy中的javaBean/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eric&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Eric&#39;s blog">
-<meta property="og:description" content="class Car {    def miles = 0    final year    Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “">
-<meta property="og:updated_time" content="2017-07-26T11:45:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="groovy中的javaBean">
-<meta name="twitter:description" content="class Car {    def miles = 0    final year    Car(theYear) { year = theYear } }Car car = new Car(2008)println “Year: $car.year”println “Miles: $car.miles”println ‘Setting miles’car.miles = 25println “">
+<meta name="twitter:title" content="Eric&#39;s blog">
 
 
 
@@ -133,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/03/groovy中的javaBean/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title>groovy中的javaBean | Eric's blog</title>
+  <title>Eric's blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -165,7 +161,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -282,9 +280,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -293,7 +291,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/03/groovy中的javaBean/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/27/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Eric">
@@ -310,7 +308,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">groovy中的javaBean</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/27/hello-world/" itemprop="url">hello world</a></h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-03T18:37:25+08:00">
-                2017-07-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-27T22:39:28+08:00">
+                2017-05-27
               </time>
             
 
@@ -341,9 +341,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/03/groovy中的javaBean/#comments" itemprop="discussionUrl">
+                <a href="/2017/05/27/hello-world/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/03/groovy中的javaBean/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/05/27/hello-world/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -368,49 +368,24 @@
       
 
       
-        <p>class Car {<br>    def miles = 0<br>    final year<br>    Car(theYear) { year = theYear }</p>
-<p>}<br>Car car = new Car(2008)<br>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Setting miles’<br>car.miles = 25<br>println “Miles: $car.miles”<br><a id="more"></a></p>
-<p>当代码中调用miles时,其实并非引用一个字段,而是调用该属性的访问器.要把属性设置为只读的,需要使用final来声明该属性.在这种情况下,groovy会为该属性提供一个访问器,但不提供更改器.<br>groovy的实现不区分public,private和protected.<br>如果想把变量设置为私有的,需要实现一个拒绝任何修改的更改器.示例代码如下</p>
-<p>class Car2 {<br>    final year<br>    private miles = 0</p>
-<pre><code>Car2(theYear) { year = theYear }
-
-def getMiles() {
-    println &quot;getMiles called&quot;
-    miles
-}
-
-private void setMiles(miles) {
-    throw new IllegalAccessException(&quot;you are not allowed to change miles&quot;)
-}
-
-def drive(dist) { if (dist&gt;0) miles += dist}
-</code></pre><p>}</p>
-<p>def car = new Car2(2012)</p>
-<p>println “Year: $car.year”<br>println “Miles: $car.miles”<br>println ‘Driving’<br>car.drive(10)<br>println “Can I set the year”<br>println “Miles: $car.miles”</p>
-<p>try {<br>    println “Can I set the year?”<br>    car.year = 1900<br>} catch (groovy.lang.ReadOnlyPropertyException ex){<br>    println ex.message<br>}</p>
-<p>try{<br>    println “Can I set the miles?”<br>    car.miles = 12<br>} catch (IllegalAccessException ex){<br>    println(ex.message)<br>}</p>
-
+        
+          
+            <pre><code>你好,欢迎来到我的个人技术博客!
+</code></pre>
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -418,42 +393,25 @@ def drive(dist) { if (dist&gt;0) miles += dist}
       
 
       
-        
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/21/HashMap中计算hash值是如何实现的/" rel="next" title="HashMap中计算hash值是如何实现的">
-                <i class="fa fa-chevron-left"></i> HashMap中计算hash值是如何实现的
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/04/关于字符串内存管理策略的问题/" rel="prev" title="关于字符串内存管理策略的问题">
-                关于字符串内存管理策略的问题 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -461,17 +419,6 @@ def drive(dist) { if (dist&gt;0) miles += dist}
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -683,10 +630,6 @@ def drive(dist) { if (dist&gt;0) miles += dist}
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
@@ -704,18 +647,6 @@ def drive(dist) { if (dist&gt;0) miles += dist}
       <script id="dsq-count-scr" src="https://eric-wu.disqus.com/count.js" async></script>
     
 
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/07/03/groovy中的javaBean/';
-          this.page.identifier = '2017/07/03/groovy中的javaBean/';
-          this.page.title = 'groovy中的javaBean';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://eric-wu.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
     
 
   
